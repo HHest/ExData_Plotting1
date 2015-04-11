@@ -1,8 +1,7 @@
 # Get portion of data
 fname <- "household_power_consumption.txt"
-pc <- read.table(fname, header=F, sep=";", na.strings="?", skip=45*24*60, nrows=5*24*60, colClasses=c("character", "character", "numeric", "numeric", "numeric", "numeric", "numeric", "numeric", "numeric"))
-pch <- read.table(fname, header=F, sep=";", nrows=1, as.is=T)
-names(pc) <- pch
+headers <- read.table(fname, header=F, sep=";", nrows=1, as.is=T)
+pc <- read.table(fname, header=F, sep=";", col.names=headers, na.strings="?", skip=45*24*60, nrows=5*24*60, colClasses=c("character", "character", "numeric", "numeric", "numeric", "numeric", "numeric", "numeric", "numeric"))
 # Get data for the two days
 pcs <- pc[pc$Date=="1/2/2007" | pc$Date=="2/2/2007",]
 # Generate a datetime column
